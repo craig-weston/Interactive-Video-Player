@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale = 1.0" />
+        <title>Interactive Video Player</title>
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/main.css" />
+    </head>
+
+    <body>
+
+        <div class="wrapper">
+        
+            <div id="video-container">
+            
+                <video id="video" preload="auto">
+                    <source src="video/video.mp4" type="video/mp4" />
+                    <source src="video/video.ogg" type="video/ogg" />
+                    <track label="English" kind="subtitles" srclang="en" src="video/captions.vtt" default />
+                </video>
+                
+                <!--Video Controls-->
+                <progress max="100" id="buffered-bar" value="0"></progress>
+                <progress max="100" id="seek-bar" value="0"></progress>
+                <div class="video-controls">
+                    <button type="button" id="play-pause">
+                        <img id="play-pause-icon" src="icons/play-icon.png" alt="Play Button" />
+                    </button>
+                    
+                    <span id="current-time">0:00</span> <span id="slash"> &#8725; </span><span id="duration">0:59</span>
+                    
+                    <button type="button" id="rewind-10"><img src="icons/rewind-10-icon.png" alt="Rewind 10 Seconds" /></button>
+                    
+                    <button type="button" id="full-screen">
+                        <img src="icons/fullscreen-icon.png" alt="Full Screen" />
+                    </button>
+                    <button type="button" id="mute">
+                        <img id="mute-icon" src="icons/volume-on-icon.png" alt="Mute Button" />
+                    </button>
+                    <button type="button" id="volume-up"> + </button>
+                    <span id="volume"> VOL </span>
+                    <button type="button" id="volume-down"> &#8211; </button>
+                    
+                    <button type="button" id="closed-caption">
+                        <img id="closed-caption-icon" src="icons/closed-caption-icon.png" alt="Closed Captions" />
+                    </button>
+
+                </div>
+                
+            </div>
+              
+            <p id="text-transcript"></p>
+    
+        </div>
+    
+    <script src="js/app.js" type="text/javascript"></script>
+    
+    </body>
+</html>

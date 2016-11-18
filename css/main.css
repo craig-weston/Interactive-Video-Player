@@ -1,0 +1,331 @@
+/*Global Styles*/
+
+*, *::after, *:before {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9em;
+    line-height: 1.75;
+    color: #645f5f;
+}
+
+p {
+    margin: .75em 1.5em;
+}
+
+video {
+    width: 100%;
+}
+
+/*Video container and controls*/
+
+#video-container {
+	position: relative;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.video-controls {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 10px;
+    padding: 10px 15px 0;
+    background: transparent;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+#video-container:hover .video-controls { /*Show controls on hover*/
+    opacity: 1;
+    -webkit-transform: translate(0,-65px);
+    -o-transform: translate(0,-65px); 
+    -moz-transform: translate(0,-65px);
+    -ms-transform: translate(0,-65px);
+        transform: translate(0,-65px);
+} 
+
+    /*Progress Bars*/
+    
+    progress[value] { /*had to do a reset on this element for FF to work properly*/
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        height: 3px;
+        border: none;
+        background-color: rgba(231, 230, 230, 0.1);
+    }
+    
+    #seek-bar,
+    #buffered-bar {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 97%;
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        transition: all 0.5s ease-in-out;
+    }
+    
+    #seek-bar {
+        z-index: 1;
+    }
+
+    #video-container:hover #seek-bar, /*Raise bars on hover*/
+    #video-container:hover #buffered-bar {
+        -webkit-transform: translate(0,-35px);
+        -o-transform: translate(0,-35px); 
+        -moz-transform: translate(0,-35px);
+        -ms-transform: translate(0,-35px);
+            transform: translate(0,-35px);
+    }
+    
+    #seek-bar::-webkit-progress-bar,
+    #buffered-bar::-webkit-progress-bar {
+        background-color: rgba(231, 230, 230, 0.1);
+    }
+    
+    #seek-bar::-webkit-progress-value {
+        background-color: orange;
+    }
+    
+    #buffered-bar::-webkit-progress-value {
+        background-color: rgba(255, 255, 255, .5);
+    }
+    
+    #buffered-bar::-moz-progress-bar {
+        background-color: rgba(255, 255, 255, .5);
+        height: 3px;
+    }
+    
+    #seek-bar::-moz-progress-bar {
+        background-color: orange;
+        height: 3px;
+    }
+
+    /*Buttons & Controls*/
+    button {
+        background: transparent;
+        border: none;
+    }
+    
+    #play-pause,
+    #current-time,
+    #slash,
+    #duration,
+    #rewind-10 {
+        float: left;
+    }
+
+    #current-time,
+    #slash,
+    #duration {
+        color: white;
+        font-size: 1em;
+        font-weight: bold;
+        display: inline-block;
+        line-height: 2;
+    }
+
+    #current-time {
+        padding-left: 15px;
+    }
+    
+    #slash {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    
+    #duration {
+        padding-right: 10px;
+    }
+    
+    #rewind-10 {
+        line-height: 2;
+    }
+    
+    #mute,
+    #closed-caption {
+        float: right;
+        padding-right: 15px;
+    }
+    
+    #full-screen {
+        float: right;
+    }
+    
+    #volume,
+    #volume-up,
+    #volume-down {
+        float: right;
+        font-weight: bold;
+        color: white; 
+    }
+    
+    #volume-up,
+    #volume-down {
+        font-size: 1.5em;
+        line-height: 1;
+        padding-right: 10px;
+    }
+    
+    #volume {
+        line-height: 2.1;
+        font-size: 0.9em;
+    }
+    
+    #volume-up {
+        padding-left: 10px;
+    }
+    
+    video::cue { /*subtitle styling, will not validate but pseudo-elements are allowed by instructions*/
+        font-family: 'Open Sans', sans-serif;
+        font-size: .6em;
+        line-height: 1.2;
+    }
+    
+    /*Colors for transcript highlights*/
+    .active-cue { 
+        color: #ed8004;
+        transition: all .6s ease-in-out;
+    }
+    
+    .inactive-cue {
+        color: #645f5f;
+        transition: all .6s ease-in-out;
+    }
+    
+    #text-transcript span {
+        cursor: pointer;
+    }
+
+
+/*Media Queries*/
+
+@media screen and (max-width: 425px) and (orientation:portrait){ /*small mobile devices*/
+   
+    .wrapper  {
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    #rewind-10, /*hide extra controls in portrait small screen*/
+    #full-screen,
+    #volume {
+        display: none;
+    }
+    
+    #play-pause img,
+    #mute img,
+    #closed-caption img {
+        width: 75%;
+        height: 75%;
+    }
+    
+    #current-time,
+    #slash,
+    #duration,
+    #volume {
+        font-size: .8em;
+    }
+      
+    #volume-up,
+    #volume-down {
+        line-height: 0.8;
+    }
+        
+    .video-controls {
+        margin-top: 5px;
+        padding: 2px 2px 0;
+    }
+    
+    #video-container:hover .video-controls { /*Show/hide controls on tap*/
+        opacity: 1;
+        -webkit-transform: translate(0,-45px);
+        -o-transform: translate(0,-45px); 
+        -moz-transform: translate(0,-45px);
+        -ms-transform: translate(0,-45px);
+             transform: translate(0,-45px);
+            
+    }
+    
+    #video-container:hover #seek-bar, /*Raise/lower bars on tap*/
+    #video-container:hover #buffered-bar {
+        -webkit-transform: translate(0,-25px);
+        -o-transform: translate(0,-25px); 
+        -moz-transform: translate(0,-25px);
+        -ms-transform: translate(0,-25px);
+                transform: translate(0,-25px);
+    }
+    
+    video::cue { 
+        font-size: 1em;
+    }
+
+}
+
+@media screen and (max-width: 736px) and (orientation:landscape){
+   
+    .wrapper  { /*full width video on landscape on mobile*/
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    #text-transcript { /*hides interactive transcript for landscape on mobile*/
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 800px) and (max-width: 1023px) and (orientation: landscape) { /*small desktops large tablets*/
+    p {
+        font-size: .85em;
+        margin: 0 auto;
+    }
+    
+    .wrapper {
+        width: 90%;
+        margin: 0 auto;
+    }
+    
+    /*Different hover color for selecting transcript text to click*/
+    #text-transcript span {
+        transition: all .6s ease-in-out;
+    }
+    
+    #text-transcript span:hover {
+        color: #5cb8d1;
+    }
+    
+}
+
+@media screen and (min-width: 1025px) and (orientation: landscape) { /*medium desktops*/
+    p {
+        font-size: 1em;
+        margin: 0 auto;
+    }
+    
+    .wrapper {
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+    /*Different hover color for selecting transcript text to click*/
+    #text-transcript span {
+        transition: all .6s ease-in-out;
+    }
+    
+    #text-transcript span:hover {
+        color: #5cb8d1;
+    }
+}
+
+@media screen and (min-width: 1375px) and (orientation: landscape) { /*large desktops*/
+    p {
+        font-size: 1.3em;
+    }
+
+}
